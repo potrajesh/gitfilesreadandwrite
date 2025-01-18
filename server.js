@@ -17,14 +17,13 @@ app.use(bodyParser.json());
 app.post('/submit-form', (req, res) => {
   const { taskDateTime, taskName, challengesFaced, completedDateTime } = req.body;
   
-  const data = `
-    Task Date and Time: ${taskDateTime}
-    Task Name: ${taskName}
-    Challenges Faced: ${challengesFaced}
-    Completed Date and Time: ${completedDateTime}
-  `;
+  const data = `Task Date and Time: ${taskDateTime}
+                Task Name: ${taskName}
+                Challenges Faced: ${challengesFaced}
+                Completed Date and Time: ${completedDateTime}`;
 
-  const filePath = path.join(__dirname, 'content.txt');
+  // Update the path to where content.txt is located
+  const filePath = path.join(__dirname, 'gitfilesreadandwrite', 'src', 'filesreadandwrite', 'content.txt');
 
   // Write the data to content.txt file
   fs.appendFile(filePath, data + '\n\n', (err) => {
