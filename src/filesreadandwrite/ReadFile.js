@@ -6,22 +6,26 @@ function ReadFile() {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    const fileUrl = 'https://raw.githubusercontent.com/potrajesh/javapractice-interview/master/syllabus';
+    // Use the raw content URL from GitHub
+    const fileUrl = 'https://raw.githubusercontent.com/potrajesh/gitfilesreadandwrite/master/src/filesreadandwrite/content.txt';
 
     axios.get(fileUrl)
       .then(response => {
-        // Assuming response.data is an object with keys: contents and status
-        setFileContent(response.data.contents);  // Accessing the 'contents' key
-        setStatus(response.data.status);  // Accessing the 'status' key, if needed
+        // If the response contains contents and status, store them
+        setFileContent(response.data);  // Assuming the raw content is returned here
+        setStatus('Success');  // Assuming the status is 'Success' if the file loads correctly
       })
-      .catch(error => console.error('Error fetching file:', error));
+      .catch(error => {
+        console.error('Error fetching file:', error);
+        setStatus('Error');  // Set status to 'Error' if something goes wrong
+      });
   }, []);
 
   return (
     <div>
-      <h1>Syllabus Content</h1>
+      <h1>File Content</h1>
       {status && <p>Status: {status}</p>}  {/* Display status if available */}
-      <pre>{fileContent}</pre>  {/* Display the file content */}
+      <pre>{fileContent}</pre>  {/* Display the raw file content */}
     </div>
   );
 }
