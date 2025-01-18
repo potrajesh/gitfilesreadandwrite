@@ -8,7 +8,8 @@ function ReadFile() {
   useEffect(() => {
     // Use the raw content URL from GitHub
     //const fileUrl = 'https://raw.githubusercontent.com/potrajesh/gitfilesreadandwrite/master/src/filesreadandwrite/content.txt';
-    const fileUrl = 'https://raw.githubusercontent.com/potrajesh/gitfilesreadandwrite/content.txt';
+    const fileUrl = 'https://raw.githubusercontent.com/potrajesh/gitfilesreadandwrite/master/content.txt';
+
 
     axios.get(fileUrl)
       .then(response => {
