@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 // Styled-components for styling the form
 const FormWrapper = styled.div`
@@ -79,8 +80,17 @@ const TaskForm = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can process the form data here, for example, log it to the console
-    console.log('Form Data Submitted:', formData);
+    
+    // Send form data to the backend server
+    axios.post('http://localhost:5000/submit-form', formData)
+      .then(response => {
+        console.log(response.data);
+        alert('Form data submitted successfully!');
+      })
+      .catch(error => {
+        console.error('There was an error submitting the form:', error);
+        alert('There was an error submitting the form.');
+      });
   };
 
   return (
