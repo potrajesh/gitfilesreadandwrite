@@ -86,6 +86,14 @@ const TaskForm = () => {
       .then(response => {
         console.log(response.data);
         alert('Form data submitted successfully!');
+        
+        // Update the form with the same data after submission
+        setFormData({
+          taskDateTime: formData.taskDateTime,
+          taskName: formData.taskName,
+          challengesFaced: formData.challengesFaced,
+          completedDateTime: formData.completedDateTime
+        });
       })
       .catch(error => {
         console.error('There was an error submitting the form:', error);
